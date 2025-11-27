@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Команда администраторов | DeltaRunedev</title>
+    <link rel="icon" href="main/Icons/icon.png" type="image/png">
+    <style>
+        :root {
+            --bg-dark: #0a1128;
+            --bg-card: #0f1a3a;
+            --neon-blue: #00f3ff;
+            --neon-purple: #b967ff;
+            --neon-pink: #ff2a6d;
+            --text-light: #e0e0ff;
+            --text-muted: #8a8dae;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: rgba(10, 17, 40, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--neon-blue);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--neon-blue);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-blue);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            margin-bottom: 3rem;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--neon-blue);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: var(--text-muted);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--neon-blue);
+            color: var(--bg-dark);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--neon-blue);
+            color: var(--neon-blue);
+            margin-left: 1rem;
+        }
+
+        .team-section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--neon-blue);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-card {
+            background: var(--bg-card);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            padding: 2rem 1rem 1rem;
+            background: var(--bg-card);
+            color: var(--text-light);
+        }
+
+        .card-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid var(--neon-blue);
+            margin: 0 auto 1rem;
+            background: var(--bg-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--neon-blue);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-body h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .card-body .role {
+            color: var(--neon-blue);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .card-body p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neon-blue);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--neon-blue);
+            color: var(--bg-dark);
+        }
+
+        .contact-section {
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .contact-section h2 {
+            margin-bottom: 1rem;
+            color: var(--neon-blue);
+        }
+
+        .contact-section p {
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--text-muted);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--text-muted);
+            border-top: 1px solid var(--neon-blue);
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-section {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="main/Icons/icon.png" alt="Логотип">
+                    <h1>DeltaRunedev Team</h1>
+                </div>
+                <div class="nav-links">
+                    <a href="#team">Команда</a>
+                    <a href="#contact">Связаться</a>
+                    <a href="https://t.me/deltarunedev" target="_blank">Канал</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Команда администраторов Telegram-канала</h2>
+            <p>Мы - команда администраторов, которые следят за порядком и развитием нашего Telegram-канала.</p>
+            <a href="#team" class="btn">Наша команда</a>
+            <a href="https://t.me/deltarunedev" target="_blank" class="btn btn-secondary">Перейти в канал</a>
+        </div>
+    </section>
+
+    <section class="team-section" id="team">
+        <div class="container">
+            <div class="section-title">
+                <h2>Наша команда</h2>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="card-header">
+                        <div class="card-avatar">D</div>
+                        <h3>deltadev</h3>
+                        <span class="role">Владелец</span>
+                    </div>
+                    <div class="card-body">
+                        <p>слежу за порядком часто выпускает посты.</p>
+                        <div class="social-links">
+                            <a href="https://t.me/deltarunedev/121" title="Написать владельцу">TG</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="card-header">
+                        <div class="card-avatar">В</div>
+                        <h3>Варежка</h3>
+                        <span class="role">Администратор</span>
+                    </div>
+                    <div class="card-body">
+                        <p>редко постит но у него крутые песни.</p>
+                        <div class="social-links">
+                            <a href="#" title="Telegram">TG</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="card-header">
+                        <div class="card-avatar">М</div>
+                        <h3>Милк Тян</h3>
+                        <span class="role">Администратор</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Круто мой подписчик.</p>
+                        <div class="social-links">
+                            <a href="#" title="Telegram">TG</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="card-header">
+                        <div class="card-avatar">P</div>
+                        <h3>UTC|DTC|Pasha_Games</h3>
+                        <span class="role">Администратор</span>
+                    </div>
+                    <div class="card-body">
+                        <p>редко очень пишет (новый админ)</p>
+                        <div class="social-links">
+                            <a href="#" title="Telegram">TG</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="card-header">
+                        <div class="card-avatar">O</div>
+                        <h3>Omeganerd777</h3>
+                        <span class="role">Первый подписчик</span>
+                    </div>
+                    <div class="card-body">
+                        <p>первый подписчик очень красиво рисует.</p>
+                        <div class="social-links">
+                            <a href="#" title="Telegram">TG</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2>Связаться с владельцем</h2>
+            <p>Если у вас есть вопросы или предложения, вы можете напрямую связаться с владельцем канала.</p>
+            <a href="https://t.me/deltarunedev/121" class="btn">Написать владельцу</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2023 DeltaRunedev Team.</p>
+            <p>Присоединяйтесь к нашему <a href="https://t.me/deltarunedev" target="_blank">Telegram-каналу</a></p>
+        </div>
+    </footer>
+</body>
+</html>
